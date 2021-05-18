@@ -1,0 +1,46 @@
+{
+  "name": "@startdev/console-logger",
+  "version": "0.0.1",
+  "description": "Replaces console.log() with a contextual JSON logger.",
+  "keywords": [],
+  "homepage": "https://github.com/startdev-app/startdev#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/startdev-app/startdev.git",
+    "directory": "packages/console-logger"
+  },
+  "bugs": {
+    "url": "https://github.com/startdev-app/startdev/issues"
+  },
+  "author": "Jack Field",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "dependencies": {
+    "@startdev/utils": "workspace:packages/utils",
+    "chalk": "^4.1.1",
+    "pino": "^6.11.3",
+    "pino-pretty": "^4.8.0",
+    "tslib": "^2.2.0"
+  },
+  "peerDependencies": {
+    "@startdev/magic": "*"
+  },
+  "peerDependenciesMeta": {
+    "@startdev/magic": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "14.14.37",
+    "@types/pino": "^6",
+    "@types/pino-pretty": "^4"
+  }
+}

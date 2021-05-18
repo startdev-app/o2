@@ -1,0 +1,62 @@
+export interface Props {
+  [name: string]: unknown;
+}
+
+export interface StartdevServiceErrorData<R extends Props, L extends Props> {
+  /**
+   * Data to respond to the request with.
+   * This property is made non-enumerable and as such will not be logged and can contain sensitive data.
+   */
+  responseData?: R;
+  /** Data to log. This should not contain sensitive data. */
+  logData?: L;
+  /** HTTP status code to respond with. */
+  status?: number;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface StartdevError<R extends Props, L extends Props>
+  extends StartdevServiceErrorData<R, L> {}
+export class StartdevError<R extends Props, L extends Props> extends Error {
+  constructor(
+    /**
+     * Description of the error.
+     * Should be a string literal to identify the type of error with specific details in the details
+     * options.
+     */
+    message: string,
+    data: StartdevServiceErrorData<R, L> = {}
+  ) {
+    super(message);
+    Object.assign(this, data);
+
+    Object.defineProperty(this, "responseData", {
+      value: data.responseData,
+      enumerable: false,
+    });
+  }
+}
+
+export const sanitizeErrorForLogging = (err: unknown): unknown => {
+  if (!(err instanceof Error)) return { message: "Unknown error" };
+
+  const shouldReplaceMessage = !(err instanceof StartdevError);
+
+  const sanitizedErr: StartdevError<
+    Props,
+    Props
+  > = new (err.constructor as typeof Error)(
+    shouldReplaceMessage ? "" : err.message
+  );
+
+  // First line of stack trace is `${myObject.name}: ${myObject.message}`
+  // https://nodejs.org/api/errors.html#errors_error_capturestacktrace_targetobject_constructoropt
+  if (err.stack) {
+    sanitizedErr.stack = shouldReplaceMessage
+      ? err.stack.replace(/^([^:\n]+):[^\n]*/, "$1")
+      : err.stack;
+  }
+  if ((err as StartdevError<Props, Props>).logData)
+    sanitizedErr.logData = (err as StartdevError<Props, Props>).logData;
+  return sanitizedErr;
+};
