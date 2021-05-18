@@ -60,7 +60,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@changesets/cli", "npm:2.14.1"],
             ["@changesets/get-release-plan", "npm:2.0.1"],
             ["@changesets/release-utils", "npm:0.1.0"],
-            ["@jstm/core", "npm:0.3.25"],
+            ["@jstm/core", "npm:0.3.26"],
             ["@jstm/preset-node", "npm:0.3.26"],
             ["@types/jest", "npm:26.0.21"],
             ["@types/node", "npm:14.14.37"],
@@ -1223,19 +1223,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@jstm/core", [
-        ["npm:0.3.25", {
-          "packageLocation": "./.yarn/cache/@jstm-core-npm-0.3.25-8d176a4e57-e49d7c32d3.zip/node_modules/@jstm/core/",
-          "packageDependencies": [
-            ["@jstm/core", "npm:0.3.25"],
-            ["@manypkg/get-packages", "npm:1.1.1"],
-            ["fs-extra", "npm:9.1.0"],
-            ["golden-fleece", "npm:1.0.9"],
-            ["inquirer", "npm:8.0.0"],
-            ["tslib", "npm:2.2.0"],
-            ["yaml", "npm:2.0.0-5"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:0.3.26", {
           "packageLocation": "./.yarn/cache/@jstm-core-npm-0.3.26-60a44cf7ae-5445ec11f4.zip/node_modules/@jstm/core/",
           "packageDependencies": [
@@ -1426,7 +1413,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@changesets/cli", "npm:2.14.1"],
             ["@changesets/get-release-plan", "npm:2.0.1"],
             ["@changesets/release-utils", "npm:0.1.0"],
-            ["@jstm/core", "npm:0.3.25"],
+            ["@jstm/core", "npm:0.3.26"],
             ["@jstm/preset-node", "npm:0.3.26"],
             ["@types/jest", "npm:26.0.21"],
             ["@types/node", "npm:14.14.37"],
