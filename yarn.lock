@@ -935,14 +935,34 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jstm/preset-node@npm:0.3.26":
-  version: 0.3.26
-  resolution: "@jstm/preset-node@npm:0.3.26"
+"@jstm/core@npm:0.3.27":
+  version: 0.3.27
+  resolution: "@jstm/core@npm:0.3.27"
+  dependencies:
+    "@changesets/release-utils": 0.1.0
+    "@manypkg/get-packages": ^1.1.1
+    chalk: 4.1.0
+    fs-extra: ^9.1.0
+    golden-fleece: ^1.0.9
+    inquirer: ^8.0.0
+    tslib: ^2.1.0
+    yaml: ^2.0.0-5
+  bin:
+    ci-github-print-changelog: dist/bin/ci-github-print-changelog.js
+    project-pre-push: dist/bin/project-pre-push.js
+    run-if-script-exists: dist/bin/run-if-script-exists.js
+  checksum: 80ce33d0fcdcf41c7b3ff9ce62674d1dd0769b47737943c1ccbab4f832f02cdc25d132787e0a3e7c77be0fff1c86ef0a669aee4bb826f35255eed727a8b619d0
+  languageName: node
+  linkType: hard
+
+"@jstm/preset-node@npm:^0.3.27":
+  version: 0.3.27
+  resolution: "@jstm/preset-node@npm:0.3.27"
   dependencies:
     "@changesets/cli": 2.14.1
     "@changesets/get-release-plan": 2.0.1
     "@changesets/release-utils": 0.1.0
-    "@jstm/core": 0.3.26
+    "@jstm/core": 0.3.27
     "@types/jest": 26.0.21
     "@types/node": 14.14.37
     "@typescript-eslint/eslint-plugin": 4.18.0
@@ -972,7 +992,7 @@ __metadata:
     utf-8-validate: 5.0.4
   bin:
     project: project.js
-  checksum: 0f125e62cb92bf43fde206a9d8c1ef0cfd4cfaae81a02dfcc9005e9fa121c358cc268ac4250d0bd5bcb71e19c3c9cfb150c0034ed86e835c86bafa68b0f11e72
+  checksum: f32ff9d4bdb45ba2c66ab1017f39a72d72e38fd34a153ab2bbe92f4bbd011968de3e56bbfdb0d2c98b4fc0a2d64755b01f6b6c9a73e4201336e67159b2c74347
   languageName: node
   linkType: hard
 
@@ -1102,7 +1122,7 @@ __metadata:
     "@changesets/get-release-plan": 2.0.1
     "@changesets/release-utils": 0.1.0
     "@jstm/core": 0.3.26
-    "@jstm/preset-node": 0.3.26
+    "@jstm/preset-node": ^0.3.27
     "@types/jest": 26.0.21
     "@types/node": 14.14.37
     "@typescript-eslint/eslint-plugin": 4.18.0
@@ -2621,6 +2641,16 @@ __metadata:
     escape-string-regexp: ^1.0.5
     supports-color: ^5.3.0
   checksum: 22c7b7b5bc761c882bb6516454a1a671923f1c53ff972860065aa0b28a195f230163c1d46ee88bcc7a03e5539177d896457d8bc727de7f244c6e87032743038e
+  languageName: node
+  linkType: hard
+
+"chalk@npm:4.1.0":
+  version: 4.1.0
+  resolution: "chalk@npm:4.1.0"
+  dependencies:
+    ansi-styles: ^4.1.0
+    supports-color: ^7.1.0
+  checksum: f860285b419f9e925c2db0f45ffa88aa8794c14b80cc5d01ff30930bcfc384996606362706f0829cf557f6d36152a5fb2d227ad63c4bc90e2ec9e9dbed4a3c07
   languageName: node
   linkType: hard
 
