@@ -917,9 +917,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jstm/core@npm:0.3.27":
-  version: 0.3.27
-  resolution: "@jstm/core@npm:0.3.27"
+"@jstm/core@npm:0.3.28":
+  version: 0.3.28
+  resolution: "@jstm/core@npm:0.3.28"
   dependencies:
     "@changesets/release-utils": 0.1.0
     "@manypkg/get-packages": ^1.1.1
@@ -933,18 +933,18 @@ __metadata:
     ci-github-print-changelog: dist/bin/ci-github-print-changelog.js
     project-pre-push: dist/bin/project-pre-push.js
     run-if-script-exists: dist/bin/run-if-script-exists.js
-  checksum: 80ce33d0fcdcf41c7b3ff9ce62674d1dd0769b47737943c1ccbab4f832f02cdc25d132787e0a3e7c77be0fff1c86ef0a669aee4bb826f35255eed727a8b619d0
+  checksum: df380afd565b2b16f1ee1b61e82ad28d82c3bac8c356d1e9d8c2c71b11afe412c0deaa7f110bc5a0fc53b8e19d14a8dbb7341be884e57a63f9149cdacb269ba7
   languageName: node
   linkType: hard
 
-"@jstm/preset-node@npm:0.3.27":
-  version: 0.3.27
-  resolution: "@jstm/preset-node@npm:0.3.27"
+"@jstm/preset-node@npm:0.3.28":
+  version: 0.3.28
+  resolution: "@jstm/preset-node@npm:0.3.28"
   dependencies:
     "@changesets/cli": 2.14.1
     "@changesets/get-release-plan": 2.0.1
     "@changesets/release-utils": 0.1.0
-    "@jstm/core": 0.3.27
+    "@jstm/core": 0.3.28
     "@types/jest": 26.0.21
     "@types/node": 14.14.37
     "@typescript-eslint/eslint-plugin": 4.18.0
@@ -974,7 +974,7 @@ __metadata:
     utf-8-validate: 5.0.4
   bin:
     project: project.js
-  checksum: f32ff9d4bdb45ba2c66ab1017f39a72d72e38fd34a153ab2bbe92f4bbd011968de3e56bbfdb0d2c98b4fc0a2d64755b01f6b6c9a73e4201336e67159b2c74347
+  checksum: bfc4fa25d406537dd297e5a6187ac492616fa672f60191b0a27f5d707ec1b5540073928716693004bed9eb00cfc0adf8ffc0aa7e9059e2536431c8c273bc3a00
   languageName: node
   linkType: hard
 
@@ -1040,36 +1040,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sindresorhus/is@npm:^4.0.0":
-  version: 4.0.1
-  resolution: "@sindresorhus/is@npm:4.0.1"
-  checksum: 16908ae19a1ca54173594bfdc8f33c6b2203fc0592cd54d551999e5b7c937815b6127fbd131360fc2dd1b1e7fb6a6afcd3d0f977a630ee17d3c7afbe8e739c02
-  languageName: node
-  linkType: hard
-
-"@sinonjs/commons@npm:^1.7.0":
-  version: 1.8.3
-  resolution: "@sinonjs/commons@npm:1.8.3"
-  dependencies:
-    type-detect: 4.0.8
-  checksum: a7f3181512f67bbb9059dc9247febfda6dea58fc2a918360b208c6fde193b0c2cbe628650b0d13b4ba69f144470788eb6c2ef8a84e050dce4808be8511da4316
-  languageName: node
-  linkType: hard
-
-"@sinonjs/fake-timers@npm:^6.0.1":
-  version: 6.0.1
-  resolution: "@sinonjs/fake-timers@npm:6.0.1"
-  dependencies:
-    "@sinonjs/commons": ^1.7.0
-  checksum: 64458b908773638dda08b555a00e6fbbbc679735348291dc1b7f437ada2f60242537fdc48e4ee82d2573d86984ec87e755b66a96c0ed9ebf0f46b4c6687ccde2
-  languageName: node
-  linkType: hard
-
-"@startdev/console-logger@workspace:packages/console-logger":
+"@oxy2/console-logger@workspace:packages/console-logger":
   version: 0.0.0-use.local
-  resolution: "@startdev/console-logger@workspace:packages/console-logger"
+  resolution: "@oxy2/console-logger@workspace:packages/console-logger"
   dependencies:
-    "@startdev/utils": "workspace:packages/utils"
+    "@oxy2/utils": "workspace:packages/utils"
     "@types/node": 14.14.37
     "@types/pino": ^6
     "@types/pino-pretty": ^4
@@ -1078,33 +1053,33 @@ __metadata:
     pino-pretty: ^4.8.0
     tslib: ^2.2.0
   peerDependencies:
-    "@startdev/magic": "*"
+    "@oxy2/magic": "*"
   peerDependenciesMeta:
-    "@startdev/magic":
+    "@oxy2/magic":
       optional: true
   languageName: unknown
   linkType: soft
 
-"@startdev/magic@workspace:packages/magic":
+"@oxy2/magic@workspace:packages/magic":
   version: 0.0.0-use.local
-  resolution: "@startdev/magic@workspace:packages/magic"
+  resolution: "@oxy2/magic@workspace:packages/magic"
   dependencies:
-    "@startdev/utils": "workspace:packages/utils"
+    "@oxy2/utils": "workspace:packages/utils"
     "@types/node": 14.14.37
     chalk: ^4.1.1
     tslib: ^2.2.0
   languageName: unknown
   linkType: soft
 
-"@startdev/monorepo@workspace:.":
+"@oxy2/monorepo@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@startdev/monorepo@workspace:."
+  resolution: "@oxy2/monorepo@workspace:."
   dependencies:
     "@changesets/cli": 2.14.1
     "@changesets/get-release-plan": 2.0.1
     "@changesets/release-utils": 0.1.0
-    "@jstm/core": 0.3.27
-    "@jstm/preset-node": 0.3.27
+    "@jstm/core": 0.3.28
+    "@jstm/preset-node": 0.3.28
     "@types/jest": 26.0.21
     "@types/node": 14.14.37
     "@typescript-eslint/eslint-plugin": 4.18.0
@@ -1136,11 +1111,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@startdev/transformer@workspace:packages/transformer":
+"@oxy2/transformer@workspace:packages/transformer":
   version: 0.0.0-use.local
-  resolution: "@startdev/transformer@workspace:packages/transformer"
+  resolution: "@oxy2/transformer@workspace:packages/transformer"
   dependencies:
-    "@startdev/utils": "workspace:packages/utils"
+    "@oxy2/utils": "workspace:packages/utils"
     "@types/node": 14.14.37
     json-schema-to-openapi-schema: ^0.4.0
     openapi3-ts: ^2.0.1
@@ -1151,14 +1126,39 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@startdev/utils@workspace:packages/utils":
+"@oxy2/utils@workspace:packages/utils":
   version: 0.0.0-use.local
-  resolution: "@startdev/utils@workspace:packages/utils"
+  resolution: "@oxy2/utils@workspace:packages/utils"
   dependencies:
     "@types/node": 14.14.37
     tslib: ^2.2.0
   languageName: unknown
   linkType: soft
+
+"@sindresorhus/is@npm:^4.0.0":
+  version: 4.0.1
+  resolution: "@sindresorhus/is@npm:4.0.1"
+  checksum: 16908ae19a1ca54173594bfdc8f33c6b2203fc0592cd54d551999e5b7c937815b6127fbd131360fc2dd1b1e7fb6a6afcd3d0f977a630ee17d3c7afbe8e739c02
+  languageName: node
+  linkType: hard
+
+"@sinonjs/commons@npm:^1.7.0":
+  version: 1.8.3
+  resolution: "@sinonjs/commons@npm:1.8.3"
+  dependencies:
+    type-detect: 4.0.8
+  checksum: a7f3181512f67bbb9059dc9247febfda6dea58fc2a918360b208c6fde193b0c2cbe628650b0d13b4ba69f144470788eb6c2ef8a84e050dce4808be8511da4316
+  languageName: node
+  linkType: hard
+
+"@sinonjs/fake-timers@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "@sinonjs/fake-timers@npm:6.0.1"
+  dependencies:
+    "@sinonjs/commons": ^1.7.0
+  checksum: 64458b908773638dda08b555a00e6fbbbc679735348291dc1b7f437ada2f60242537fdc48e4ee82d2573d86984ec87e755b66a96c0ed9ebf0f46b4c6687ccde2
+  languageName: node
+  linkType: hard
 
 "@szmarczak/http-timer@npm:^4.0.5":
   version: 4.0.5

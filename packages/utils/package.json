@@ -1,16 +1,16 @@
 {
-  "name": "@startdev/utils",
+  "name": "@oxy2/utils",
   "version": "0.0.1",
-  "description": "Internal utilities for the startdev framework.",
+  "description": "Internal utilities for the o2 framework.",
   "keywords": [],
-  "homepage": "https://github.com/startdev-app/startdev#readme",
+  "homepage": "https://github.com/startdev-app/o2#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/startdev-app/startdev.git",
+    "url": "https://github.com/startdev-app/o2.git",
     "directory": "packages/utils"
   },
   "bugs": {
-    "url": "https://github.com/startdev-app/startdev/issues"
+    "url": "https://github.com/startdev-app/o2/issues"
   },
   "author": "Jack Field",
   "license": "MIT",

@@ -1,16 +1,16 @@
 {
-  "name": "@startdev/transformer",
+  "name": "@oxy2/transformer",
   "version": "0.0.1",
   "description": "TypeScript transformer which generates things like OpenAPI docs from types.",
   "keywords": [],
-  "homepage": "https://github.com/startdev-app/startdev#readme",
+  "homepage": "https://github.com/startdev-app/o2#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/startdev-app/startdev.git",
+    "url": "https://github.com/startdev-app/o2.git",
     "directory": "packages/transformer"
   },
   "bugs": {
-    "url": "https://github.com/startdev-app/startdev/issues"
+    "url": "https://github.com/startdev-app/o2/issues"
   },
   "author": "Jack Field",
   "license": "MIT",
@@ -24,7 +24,7 @@
     "node": ">=14"
   },
   "dependencies": {
-    "@startdev/utils": "workspace:packages/utils",
+    "@oxy2/utils": "workspace:packages/utils",
     "json-schema-to-openapi-schema": "^0.4.0",
     "openapi3-ts": "^2.0.1",
     "ts-json-schema-generator": "^0.92.0",

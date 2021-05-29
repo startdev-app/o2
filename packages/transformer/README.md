@@ -1,4 +1,4 @@
-# @startdev/transformer
+# @oxy2/transformer
 
 _TypeScript transformer which generates things like OpenAPI docs from types._
 

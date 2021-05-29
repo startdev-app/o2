@@ -1,4 +1,4 @@
-# @startdev/magic
+# @oxy2/magic
 
 _Registry of unexpected behaviors (✨ magic ✨) in an application._
 

@@ -1,4 +1,4 @@
-# @startdev/console-logger
+# @oxy2/console-logger
 
 _Replaces console.log() with a contextual JSON logger._
 
@@ -7,7 +7,7 @@ _Replaces console.log() with a contextual JSON logger._
 ## Quick start
 
 ```ts
-import { initLogger } from "@startdev/console-logger";
+import { initLogger } from "@oxy2/console-logger";
 
 // All console logs from now on will be JSON data with `level` and `time` properties
 initLogger();
@@ -17,7 +17,7 @@ console.error({ error: "something happened" });
 // => {"level":50,"time":1621043684459,"error":"something happened"}
 
 // Calling `addToLoggerContext()` will add data to all further logs in the current synchronous execution
-import { addToLoggerContext } from "@startdev/console-logger";
+import { addToLoggerContext } from "@oxy2/console-logger";
 serverMiddleware((path) => addToLoggerContext({ path }));
 onGet("/hello", () => console.log("Hello, world!"));
 // => {"level":30,"time":1621043684459,"msg":"Hello, world!","path":"/hello"}
@@ -28,7 +28,7 @@ console.log("Hello, world!", { path: "/hello" });
 // => (i) Hello, world! { path: "/hello" }
 
 // Pass `useConsole` to avoid modifying the global console
-import { logger } from "@startdev/console-logger";
+import { logger } from "@oxy2/console-logger";
 initLogger({ useConsole: false });
 logger.info("Hello, world!", { path: "/hello" });
 // => {"level":30,"time":1621043684459,"msg":"Hello, world!","path":"/hello"}

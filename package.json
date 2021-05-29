@@ -1,16 +1,16 @@
 {
-  "name": "@startdev/monorepo",
+  "name": "@oxy2/monorepo",
   "private": true,
   "version": "1.0.0",
-  "description": "Libraries and tools for building apps.",
+  "description": "JS app framework.",
   "keywords": [],
-  "homepage": "https://github.com/startdev-app/startdev#readme",
+  "homepage": "https://github.com/startdev-app/o2#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/startdev-app/startdev.git"
+    "url": "https://github.com/startdev-app/o2.git"
   },
   "bugs": {
-    "url": "https://github.com/startdev-app/startdev/issues"
+    "url": "https://github.com/startdev-app/o2/issues"
   },
   "author": "Jack Field",
   "license": "MIT",
@@ -46,8 +46,8 @@
     "@changesets/cli": "2.14.1",
     "@changesets/get-release-plan": "2.0.1",
     "@changesets/release-utils": "0.1.0",
-    "@jstm/core": "0.3.27",
-    "@jstm/preset-node": "0.3.27",
+    "@jstm/core": "0.3.28",
+    "@jstm/preset-node": "0.3.28",
     "@types/jest": "26.0.21",
     "@types/node": "14.14.37",
     "@typescript-eslint/eslint-plugin": "4.18.0",

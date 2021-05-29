@@ -8,7 +8,7 @@ import {
   JsonData,
   NonReadonly,
   replaceDefinitionRefsWithComponents,
-} from "@startdev/utils";
+} from "@oxy2/utils";
 
 // Required because only this file is imported when used as a transformer plugin
 // which means we don't get the types for `json-schema-to-openapi-schema` declared
@@ -54,8 +54,8 @@ const transformer = (
     const visitor: ts.Visitor = (node) => {
       if (ts.isNewExpression(node)) {
         const type = checker.getTypeAtLocation(node);
-        const isI5Endpoint = type.symbol?.escapedName === "I5Endpoint";
-        if (isI5Endpoint) {
+        const isO2Endpoint = type.symbol?.escapedName === "O2Endpoint";
+        if (isO2Endpoint) {
           const bail = (msg: string): ts.NewExpression => {
             console.error(msg + " so OpenAPI cannot be inferred");
             return ts.visitEachChild(node, visitor, context);
@@ -97,7 +97,7 @@ const transformer = (
 
               console.error(err);
               throw new Error(
-                `Error generating I5Endpoint OpenAPI schema: ${err}`
+                `Error generating O2Endpoint OpenAPI schema: ${err}`
               );
             }
           };
@@ -105,7 +105,7 @@ const transformer = (
           const [input, output] =
             (type as ts.TypeReference).typeArguments || [];
           if (!input || !output)
-            return bail("I5Endpoint is missing generic arguments");
+            return bail("O2Endpoint is missing generic arguments");
           const openapiInput = getOpenapiSchemaForType(input, true);
           const openapiOutput = getOpenapiSchemaForType(output, false);
           const endpointOpenapi = {
@@ -157,16 +157,16 @@ const transformer = (
           return cloned;
         }
 
-        //   if (isI5Endpoint) {
+        //   if (isO2Endpoint) {
         //     const arg = node.arguments?.[0];
-        //     if (arg) argsToAddI5EndpointTypeInfo.add(arg);
+        //     if (arg) argsToAddO2EndpointTypeInfo.add(arg);
         //   }
-        // } else if (argsToAddI5EndpointTypeInfo.has(node as ts.Expression)) {
+        // } else if (argsToAddO2EndpointTypeInfo.has(node as ts.Expression)) {
         //   const handler = checker.getTypeAtLocation(node).getProperty('handler');
         //   if (handler && ts.isPropertySignature(handler) && handler.type) {
         //     // const handlerType = checker.getTypeAtLocation(handler);
         //     console.log(checker.getTypeFromTypeNode(handler.valueDeclaration.type));
-        //     return ts.createCall(ts.createIdentifier('addI5EndpointTypeInfo'), [], [node as ts.Expression]);
+        //     return ts.createCall(ts.createIdentifier('addO2EndpointTypeInfo'), [], [node as ts.Expression]);
         //   }
       }
 

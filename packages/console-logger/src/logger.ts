@@ -1,6 +1,6 @@
 import nodeConsole from "console";
 
-import { StartdevError } from "@startdev/utils";
+import { StartdevError } from "@oxy2/utils";
 
 import { ConsoleLogMethodKey } from "./console";
 import { getContextualLogger } from "./contextual-logger";

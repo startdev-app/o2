@@ -1,16 +1,16 @@
 {
-  "name": "@startdev/console-logger",
+  "name": "@oxy2/console-logger",
   "version": "0.0.1",
   "description": "Replaces console.log() with a contextual JSON logger.",
   "keywords": [],
-  "homepage": "https://github.com/startdev-app/startdev#readme",
+  "homepage": "https://github.com/startdev-app/o2#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/startdev-app/startdev.git",
+    "url": "https://github.com/startdev-app/o2.git",
     "directory": "packages/console-logger"
   },
   "bugs": {
-    "url": "https://github.com/startdev-app/startdev/issues"
+    "url": "https://github.com/startdev-app/o2/issues"
   },
   "author": "Jack Field",
   "license": "MIT",
@@ -24,17 +24,17 @@
     "node": ">=14"
   },
   "dependencies": {
-    "@startdev/utils": "workspace:packages/utils",
+    "@oxy2/utils": "workspace:packages/utils",
     "chalk": "^4.1.1",
     "pino": "^6.11.3",
     "pino-pretty": "^4.8.0",
     "tslib": "^2.2.0"
   },
   "peerDependencies": {
-    "@startdev/magic": "*"
+    "@oxy2/magic": "*"
   },
   "peerDependenciesMeta": {
-    "@startdev/magic": {
+    "@oxy2/magic": {
       "optional": true
     }
   },

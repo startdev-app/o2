@@ -2,7 +2,7 @@ import path from "path";
 
 import chalk from "chalk";
 
-import { getStackTrace, isUrl } from "@startdev/utils";
+import { getStackTrace, isUrl } from "@oxy2/utils";
 
 export interface Magic {
   /** One-line summary of the magic in markdown format. */

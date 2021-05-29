@@ -8,7 +8,7 @@
     "outDir": "./dist",
     "types": ["node"],
     "paths": {
-      "@startdev/utils": ["packages/utils/src"]
+      "@oxy2/utils": ["packages/utils/src"]
     }
   },
   "references": [

@@ -1,2 +1,8 @@
+releases:
+  "@oxy2/console-logger": patch
+  "@oxy2/magic": patch
+  "@oxy2/transformer": patch
+  "@oxy2/utils": patch
+
 declined:
-  - "@startdev/monorepo"
+  - "@oxy2/monorepo"

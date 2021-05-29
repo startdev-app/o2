@@ -39,14 +39,12 @@ export const initLogger = ({
   if (useConsole) {
     try {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
-      (require("@startdev/magic") as typeof import("@startdev/magic")).declareMagic(
-        {
-          description:
-            "`console.log` and other console methods are modified to log JSON data in prod",
-          rule: "Use `console.log`",
-          docs: "../README.md",
-        }
-      );
+      (require("@oxy2/magic") as typeof import("@oxy2/magic")).declareMagic({
+        description:
+          "`console.log` and other console methods are modified to log JSON data in prod",
+        rule: "Use `console.log`",
+        docs: "../README.md",
+      });
     } catch {}
 
     // TODO: Mock console module (could use require cache but doesn't work in Jest, otherwise modify props)

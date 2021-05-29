@@ -1,6 +1,6 @@
-# @startdev/monorepo
+# @oxy2/monorepo
 
-_Libraries and tools for building apps._
+_JS app framework._
 
 ## Contributing
 

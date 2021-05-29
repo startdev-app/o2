@@ -1,16 +1,16 @@
 {
-  "name": "@startdev/magic",
+  "name": "@oxy2/magic",
   "version": "0.0.1",
   "description": "Registry of unexpected behaviors (✨ magic ✨) in an application.",
   "keywords": [],
-  "homepage": "https://github.com/startdev-app/startdev#readme",
+  "homepage": "https://github.com/startdev-app/o2#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/startdev-app/startdev.git",
+    "url": "https://github.com/startdev-app/o2.git",
     "directory": "packages/magic"
   },
   "bugs": {
-    "url": "https://github.com/startdev-app/startdev/issues"
+    "url": "https://github.com/startdev-app/o2/issues"
   },
   "author": "Jack Field",
   "license": "MIT",
@@ -24,7 +24,7 @@
     "node": ">=14"
   },
   "dependencies": {
-    "@startdev/utils": "workspace:packages/utils",
+    "@oxy2/utils": "workspace:packages/utils",
     "chalk": "^4.1.1",
     "tslib": "^2.2.0"
   },

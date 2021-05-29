@@ -9,8 +9,8 @@
     "outDir": "./dist",
     "types": ["node"],
     "paths": {
-      "@startdev/magic": ["../magic/src"],
-      "@startdev/utils": ["../utils/src"]
+      "@oxy2/magic": ["../magic/src"],
+      "@oxy2/utils": ["../utils/src"]
     }
   },
   "references": [{ "path": "../utils" }, { "path": "../magic" }]

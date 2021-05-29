@@ -12,14 +12,12 @@ export const initContextualLogger = (logger: HierarchicalLogger): void => {
 
   try {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    (require("@startdev/magic") as typeof import("@startdev/magic")).declareMagic(
-      {
-        description:
-          "Logger uses `AsyncLocalStorage` to have different context objects per request without having to pass them in explicitly",
-        // TODO: Update to README URL
-        docs: "../README.md",
-      }
-    );
+    (require("@oxy2/magic") as typeof import("@oxy2/magic")).declareMagic({
+      description:
+        "Logger uses `AsyncLocalStorage` to have different context objects per request without having to pass them in explicitly",
+      // TODO: Update to README URL
+      docs: "../README.md",
+    });
   } catch {}
 };
 

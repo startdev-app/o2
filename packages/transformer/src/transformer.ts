@@ -129,7 +129,7 @@ export default function transformer<T extends ts.Node>(
         ts.isFunctionLike(node) &&
         (node.name as ts.Identifier)?.text === "handler" &&
         ((node.parent.parent as ts.NewExpression)?.expression as ts.Identifier)
-          .text === "I5Endpoint"
+          .text === "O2Endpoint"
       ) {
         return transformHandlerFn(node, visitorContext);
       }
