@@ -917,24 +917,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jstm/core@npm:0.3.26":
-  version: 0.3.26
-  resolution: "@jstm/core@npm:0.3.26"
-  dependencies:
-    "@manypkg/get-packages": ^1.1.1
-    fs-extra: ^9.1.0
-    golden-fleece: ^1.0.9
-    inquirer: ^8.0.0
-    tslib: ^2.1.0
-    yaml: ^2.0.0-5
-  bin:
-    ci-github-print-changelog: dist/bin/ci-github-print-changelog.js
-    project-pre-push: dist/bin/project-pre-push.js
-    run-if-script-exists: dist/bin/run-if-script-exists.js
-  checksum: 5445ec11f4e1b18b01b5ba3d564b6bdfb1305add8fdb9d242b27def6ab9bffe7d36a90826ee52f5aa84e4d36bf30ec545d462f8b42c19c420ec27cf7e06920a0
-  languageName: node
-  linkType: hard
-
 "@jstm/core@npm:0.3.27":
   version: 0.3.27
   resolution: "@jstm/core@npm:0.3.27"
@@ -955,7 +937,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jstm/preset-node@npm:^0.3.27":
+"@jstm/preset-node@npm:0.3.27":
   version: 0.3.27
   resolution: "@jstm/preset-node@npm:0.3.27"
   dependencies:
@@ -1121,8 +1103,8 @@ __metadata:
     "@changesets/cli": 2.14.1
     "@changesets/get-release-plan": 2.0.1
     "@changesets/release-utils": 0.1.0
-    "@jstm/core": 0.3.26
-    "@jstm/preset-node": ^0.3.27
+    "@jstm/core": 0.3.27
+    "@jstm/preset-node": 0.3.27
     "@types/jest": 26.0.21
     "@types/node": 14.14.37
     "@typescript-eslint/eslint-plugin": 4.18.0

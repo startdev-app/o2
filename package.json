@@ -42,7 +42,6 @@
     "=== (end generated scripts) ===": "",
     "": ""
   },
-  "dependencies": {},
   "devDependencies": {
     "@changesets/cli": "2.14.1",
     "@changesets/get-release-plan": "2.0.1",
