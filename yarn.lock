@@ -917,9 +917,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jstm/core@npm:0.3.28":
-  version: 0.3.28
-  resolution: "@jstm/core@npm:0.3.28"
+"@jstm/core@npm:0.3.29":
+  version: 0.3.29
+  resolution: "@jstm/core@npm:0.3.29"
   dependencies:
     "@changesets/release-utils": 0.1.0
     "@manypkg/get-packages": ^1.1.1
@@ -933,18 +933,18 @@ __metadata:
     ci-github-print-changelog: dist/bin/ci-github-print-changelog.js
     project-pre-push: dist/bin/project-pre-push.js
     run-if-script-exists: dist/bin/run-if-script-exists.js
-  checksum: df380afd565b2b16f1ee1b61e82ad28d82c3bac8c356d1e9d8c2c71b11afe412c0deaa7f110bc5a0fc53b8e19d14a8dbb7341be884e57a63f9149cdacb269ba7
+  checksum: ec3fd554c0f99753de5223f697c129593c783763e6910e1d5407cf1bdc23841b968dde9cb1c9c2ed62bb6c1c13f053a27acac4b9fcf3c595c3261056b2c2bdd5
   languageName: node
   linkType: hard
 
-"@jstm/preset-node@npm:0.3.28":
-  version: 0.3.28
-  resolution: "@jstm/preset-node@npm:0.3.28"
+"@jstm/preset-node@npm:0.3.29":
+  version: 0.3.29
+  resolution: "@jstm/preset-node@npm:0.3.29"
   dependencies:
     "@changesets/cli": 2.14.1
     "@changesets/get-release-plan": 2.0.1
     "@changesets/release-utils": 0.1.0
-    "@jstm/core": 0.3.28
+    "@jstm/core": 0.3.29
     "@types/jest": 26.0.21
     "@types/node": 14.14.37
     "@typescript-eslint/eslint-plugin": 4.18.0
@@ -974,7 +974,7 @@ __metadata:
     utf-8-validate: 5.0.4
   bin:
     project: project.js
-  checksum: bfc4fa25d406537dd297e5a6187ac492616fa672f60191b0a27f5d707ec1b5540073928716693004bed9eb00cfc0adf8ffc0aa7e9059e2536431c8c273bc3a00
+  checksum: 23640e2fa4dae3347049365db67d060a83a099577fd23782bb10c480ab1a4dd843e138ed0081e7f5c0af955895c6840ecb5a6ad83fd9d4106d8059dcd4308c28
   languageName: node
   linkType: hard
 
@@ -1078,8 +1078,8 @@ __metadata:
     "@changesets/cli": 2.14.1
     "@changesets/get-release-plan": 2.0.1
     "@changesets/release-utils": 0.1.0
-    "@jstm/core": 0.3.28
-    "@jstm/preset-node": 0.3.28
+    "@jstm/core": 0.3.29
+    "@jstm/preset-node": 0.3.29
     "@types/jest": 26.0.21
     "@types/node": 14.14.37
     "@typescript-eslint/eslint-plugin": 4.18.0
