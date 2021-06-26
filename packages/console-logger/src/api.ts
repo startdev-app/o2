@@ -4,23 +4,17 @@ import { logLevels } from "./console";
 import { getContextualLogger, initContextualLogger } from "./contextual-logger";
 import { DevConsoleLogger } from "./dev-logger";
 import { ConsoleLogger, LoggerOpts } from "./logger";
-import { LoggerLevel } from "./logger-interface";
+import { HierarchicalLogger, LoggerLevel } from "./logger-interface";
 
 /** Returns `true` if the logger has already been attached to the global console. */
 export const isLoggerAttachedToConsole = (): boolean =>
   global.console.constructor === ConsoleLogger ||
   global.console.constructor === DevConsoleLogger;
 
-/**
- * Sets up the contextual logger and replaces the global `console` with the logger.
- */
-export const initLogger = ({
-  stdout = process.stdout,
-  stderr = process.stderr,
-  useDevLogger = false,
-  logger = pino({
+export const createBaseLogger = (isDev: boolean): HierarchicalLogger =>
+  pino({
     base: null,
-    ...(useDevLogger
+    ...(isDev
       ? {
           // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           prettifier: require("pino-pretty"),
@@ -29,7 +23,14 @@ export const initLogger = ({
           },
         }
       : {}),
-  }),
+  });
+
+/** Sets up the contextual logger and replaces the global `console` with the logger. */
+export const initLogger = ({
+  stdout = process.stdout,
+  stderr = process.stderr,
+  useDevLogger = false,
+  logger = createBaseLogger(useDevLogger),
   useConsole = true,
 }: Partial<LoggerOpts> & {
   useConsole?: boolean;

@@ -1,6 +1,6 @@
 import { AsyncLocalStorage } from "async_hooks";
 
-import { HierarchicalLogger, LoggerData } from "./logger-interface";
+import type { HierarchicalLogger, LoggerData } from "./logger-interface";
 
 const ctxData = new AsyncLocalStorage<LoggerData>();
 const ctxLogger = new AsyncLocalStorage<HierarchicalLogger>();

@@ -1,6 +1,6 @@
 # @oxy2/utils
 
-_Internal utilities for the o2 framework._
+_Internal utilities for the O2 framework._
 
 ## Contributing
 

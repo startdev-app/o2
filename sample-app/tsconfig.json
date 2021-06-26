@@ -1,0 +1,13 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@oxy2/backend": ["packages/backend/src"],
+      "@oxy2/dev": ["packages/dev/src"]
+    }
+  },
+  "references": [
+    { "path": "../packages/backend" },
+    { "path": "../packages/dev" }
+  ]
+}

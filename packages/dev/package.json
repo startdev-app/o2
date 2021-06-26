@@ -1,0 +1,38 @@
+{
+  "name": "@oxy2/dev",
+  "version": "0.0.1",
+  "description": "Dev tools for O2 applications.",
+  "keywords": [],
+  "homepage": "https://github.com/startdev-app/o2#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/startdev-app/o2.git",
+    "directory": "packages/dev"
+  },
+  "bugs": {
+    "url": "https://github.com/startdev-app/o2/issues"
+  },
+  "author": "Jack Field",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "dependencies": {
+    "@oxy2/backend": "workspace:packages/backend",
+    "@oxy2/magic": "workspace:packages/magic",
+    "koa": "^2.13.1",
+    "prettier": "^2.3.0",
+    "tslib": "^2.2.0"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.13.3",
+    "@types/node": "14.14.37",
+    "@types/prettier": "^2.2.3"
+  }
+}

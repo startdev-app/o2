@@ -38,6 +38,12 @@ export const declareMagic = ({ description, rule, docs }: MagicOpts): void => {
   };
 };
 
+/** Sugar for evaluating an expression which introduces magic.  */
+export const withMagic = <T>(opts: MagicOpts, value: T): T => {
+  declareMagic(opts);
+  return value;
+};
+
 export const listMagic = (): Magic[] => Object.values(registry);
 
 export const logMagic = (): void => {

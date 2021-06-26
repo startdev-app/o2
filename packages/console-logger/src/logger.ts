@@ -1,6 +1,6 @@
 import nodeConsole from "console";
 
-import { StartdevError } from "@oxy2/utils";
+import { O2Error } from "@oxy2/utils";
 
 import { ConsoleLogMethodKey } from "./console";
 import { getContextualLogger } from "./contextual-logger";
@@ -12,6 +12,8 @@ import {
 } from "./logger-interface";
 
 export interface LoggerOpts extends NodeJS.ConsoleConstructorOptions {
+  /** The underlying logger used to print logs. Its log methods will only be
+   * called with a single object as an argument. */
   logger: HierarchicalLogger;
   messageProperty?: string;
   argsProperty?: string;
@@ -57,7 +59,7 @@ const logWithLevel = (level: LoggerLevel) =>
                 // TODO: Parse the stack into an array?
                 stack: value.stack,
                 err: value.message,
-                ...(value as StartdevError<
+                ...(value as O2Error<
                   Record<string, never>,
                   Record<string, never>
                 >).logData,

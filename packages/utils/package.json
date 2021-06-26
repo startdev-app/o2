@@ -1,7 +1,7 @@
 {
   "name": "@oxy2/utils",
   "version": "0.0.1",
-  "description": "Internal utilities for the o2 framework.",
+  "description": "Internal utilities for the O2 framework.",
   "keywords": [],
   "homepage": "https://github.com/startdev-app/o2#readme",
   "repository": {
