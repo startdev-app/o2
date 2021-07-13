@@ -1,7 +1,3 @@
-# @oxy2/magic
+# @oxy2/backend
 
-_Registry of unexpected behaviors (✨ magic ✨) in an application._
-
-## Contributing
-
-See [CONTRIBUTING.md](../../CONTRIBUTING.md) for instructions how to develop locally and make changes.
+_Framework for building an O2 backend._

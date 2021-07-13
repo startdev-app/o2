@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Span, Tracer } from "opentracing";
 
 import { declareMagic } from "@oxy2/magic";

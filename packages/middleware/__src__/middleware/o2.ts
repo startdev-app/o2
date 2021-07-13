@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { O2Api, O2ApiAny } from "../O2Api";
 import { O2Endpoint, O2EndpointAny, O2EndpointInput } from "../O2Endpoint";
 import { O2ClientError } from "../errors";

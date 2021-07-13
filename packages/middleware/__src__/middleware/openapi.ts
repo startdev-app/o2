@@ -1,3 +1,4 @@
+/* eslint-disable */
 import querystring from "querystring";
 import { URL } from "url";
 
@@ -111,7 +112,7 @@ export const middlewareOpenapiValidateResponse = ({
               (err) => ((err as unknown) as { error: string }).error
             )
           : [err.message];
-        ctx.logger.error("Incorrect server response", {
+        console.error("Incorrect server response", {
           in: err.meta.in,
           // Errors could contain sensitive data so only show them during development
           ...(isDev ? { errors } : {}),

@@ -1,18 +1,30 @@
-import http from "http";
+import http, { STATUS_CODES } from "http";
+import { Socket } from "net";
 
-import Koa from "koa";
+import bodyParser from "co-body";
+import Koa, { Context } from "koa";
+import onFinished, { isFinished } from "on-finished";
 import * as prettier from "prettier";
 
 import {
+  O2Api,
   O2ApiAny,
-  middlewareAttachLogger,
-  middlewareBodyParse,
-  middlewareErrorHandler,
-  middlewareLoggerResponse,
-  middlewareOpenapiValidateResponse,
-  middlewareOutputJson,
+  O2ClientError,
+  O2ClientErrorAny,
+  O2Endpoint,
+  O2EndpointInput,
 } from "@oxy2/backend";
-import { withMagic } from "@oxy2/magic";
+
+type UnknownError =
+  | O2ClientErrorAny
+  | Record<string, unknown>
+  | undefined
+  | null;
+
+interface O2Socket extends Socket {
+  server: http.Server;
+  clientError?: { err: unknown; status: number };
+}
 
 export interface DevServerOpts {
   api: O2ApiAny;
@@ -24,90 +36,170 @@ export const startDevServer = ({
   port = 8080,
 }: DevServerOpts): Promise<http.Server> =>
   new Promise((resolve, reject) => {
-    const attachLogger = middlewareAttachLogger({});
-    const server = http.createServer(
-      new Koa()
-        .use(async (ctx, next) => {
-          attachLogger();
-        })
-        // .use(middlewareAttachLogger({}))
-        // .use(
-        //   middlewareOutputJson({
-        //     prettifier: withMagic(
-        //       { description: "JSON responses are prettified during local dev" },
-        //       (data) => {
-        //         const formatted = prettier.format(data, { parser: "json" });
-        //         return (
-        //           formatted +
-        //           (formatted[formatted.length - 1] !== "\n" ? "\n" : "")
-        //         );
-        //       }
-        //     ),
-        //   })
-        // )
-        // .use(middlewareLoggerResponse({ newlineOnReqEnd: true }))
-        // .use(
-        //   withMagic(
-        //     {
-        //       description:
-        //         "Endpoint responses are validated only during local dev to ensure they match the OpenAPI doc",
-        //     },
-        //     middlewareOpenapiValidateResponse({ api })
-        //   )
-        // )
-        // .use(
-        //   middlewareErrorHandler({
-        //     backupLogger: console,
-        //     logErrorsInDev: withMagic(
-        //       {
-        //         description:
-        //           "Server error responses and logs contain error messages during local dev",
-        //       },
-        //       true
-        //     ),
-        //   })
-        // )
-        // .use(
-        //   middlewareTracerZipkin({
-        //     // https://hello.atlassian.net/wiki/spaces/OBSERVABILITY/pages/296895145/How+to+-+Trace+via+the+Tracing+Sidecar
-        //     endpoint:
-        //       process.env.MICROS_PLATFORM_TRACING_NAME &&
-        //       `http://${process.env.MICROS_PLATFORM_TRACING_NAME}/api/v2/spans`,
-        //     tracerOpts: {
-        //       // https://hello.atlassian.net/wiki/spaces/OBSERVABILITY/pages/352945940/Reference+-+Zipkin+Libraries+and+Tech+Stacks
-        //       // 5mb is the default limit in i5 so we don't need to set that here
-        //       supportsJoin: false,
-        //     },
-        //     isDev,
-        //   })
-        // )
-        // .use(middlewareTracerAddToLogs({ isDev }))
-        // .use(middlewareOpenapiRouteJson({ service }))
-        // .use(middlewareGetI5Endpoint({ service }))
-        // .use(middlewareLoggerRequest())
-        // .use(
-        //   middlewareStatsd({
-        //     service,
-        //     isDev,
-        //     statsdOpts: {
-        //       host: "platform-statsd",
-        //       port: 8125,
-        //     },
-        //   })
-        // )
-        // .use(middlewareStatsdMetrics())
-        // .use(middlewareBodyParse())
-        // .use(middlewareOpenapiValidateRequest({ service }))
-        // .use(middlewareSloStatsd())
-        // .use(middlewareExecuteI5Endpoint())
-        .on("error", koaErrorHandler(isDev))
-        .callback()
-    );
-    server.listen(port);
+    const errorHandler = (err?: UnknownError, ctx?: Context): void => {
+      if (ctx) {
+        const socket = ctx.req?.socket as O2Socket;
+        // Swallow any server errors if they were probably caused by the client making an invalid request
+        if (socket?.clientError) {
+          const clientError = socket.clientError.err as
+            | { code?: string }
+            | undefined;
+
+          ctx.status = socket.clientError.status;
+          ctx.body = { error: "invalid request", code: clientError?.code };
+
+          console.info("Client socket error", {
+            v8Code: clientError?.code,
+            err: clientError,
+          });
+          return;
+        }
+
+        const errStatus = typeof err?.status === "number" && err.status;
+        ctx.status = errStatus || (err instanceof O2ClientError ? 400 : 500);
+        const message =
+          (err instanceof O2ClientError && err.message) ||
+          STATUS_CODES[ctx.status];
+        ctx.body = { error: message, ...(err?.responseData as {}) };
+      }
+
+      const logData = typeof err?.logData === "object" && err.logData;
+      console[err instanceof O2ClientError ? "warn" : "error"](
+        err instanceof O2ClientError
+          ? err.message
+          : (err && err instanceof Error && err.constructor.name) ||
+              "unknown error",
+        { ...logData, errorOnlyShownInDev: err }
+      );
+    };
     const onError = (err: Error): void => reject(err);
-    server.on("error", onError);
-    server.on("listening", () => {
-      server.off("error", onError);
-      resolve(server);
-    });
+    const server = http
+      .createServer(
+        new Koa()
+          .use(async (ctx, next) => {
+            try {
+              await next();
+            } catch (err) {
+              errorHandler(err, ctx);
+            }
+
+            try {
+              ctx.response.type = "json";
+              /** @magic JSON responses are prettified during local dev */
+              ctx.body = prettier.format(JSON.stringify(ctx.body ?? {}), {
+                parser: "json",
+              });
+            } catch (err) {
+              ctx.status = 500;
+              console.error("Failed to stringify output", {
+                errOnlyShownInDev: err as unknown,
+              });
+              ctx.body = JSON.stringify({
+                error: "failed to stringify output",
+              });
+            }
+          })
+          .use(async (ctx, next) => {
+            let endpointLatency: number | undefined;
+            onFinished(ctx.res, () => {
+              console.log("Request", {
+                req: {
+                  method: ctx.req.method,
+                  url: ctx.req.url,
+                  // TODO: See if we can sanitize these to make sure they're safe to log
+                  // headers: ctx.headers,
+                  // query: ctx.query,
+                  // host: ctx.host,
+                  remote: {
+                    addr: ctx.req.socket.remoteAddress,
+                    port: ctx.req.socket.remotePort,
+                  },
+                },
+                res: {
+                  status: ctx.res.statusCode,
+                  latency: endpointLatency,
+                  // length: ctx.res.length,
+                  // TODO: See if we can sanitize these to make sure they're safe to log
+                  // headers: ctx.res.getHeaders(),
+                },
+              });
+
+              // Put an empty line after requests in dev to easily distinguish request log boundaries
+              process.stdout.write("\n");
+            });
+
+            if (ctx.req.method !== "POST")
+              throw new O2ClientError("method must be POST for O2 endpoints", {
+                status: 405,
+                logData: { method: ctx.req.method },
+              });
+
+            let body: unknown;
+            try {
+              body = (await bodyParser(ctx.req)) as unknown;
+            } catch (err) {
+              const status = (err as Record<string, unknown> | undefined)
+                ?.status;
+              throw new O2ClientError("could not read request body", {
+                status: typeof status === "number" ? status : undefined,
+                responseData: { details: String(err) },
+              });
+            }
+
+            const pathParts = ctx.req.url!.split("/").filter((part) => part);
+            if (pathParts.length === 0)
+              throw new O2ClientError("no endpoint specified in path");
+            const endpointName = pathParts[pathParts.length - 1];
+            const apiPath = pathParts.slice(0, -1);
+            const endpoint = pathParts.reduce(
+              (apiOrEndpoint, name) =>
+                apiOrEndpoint instanceof O2Api
+                  ? apiOrEndpoint.endpoints[name]
+                  : undefined,
+              api
+            );
+
+            if (!endpoint || !(endpoint instanceof O2Endpoint))
+              throw new O2ClientError("endpoint not found", {
+                status: 404,
+                responseData: { apiPath, endpoint: endpointName },
+                logData: { apiPath, endpoint: endpointName },
+              });
+
+            const startTime = Date.now();
+            try {
+              ctx.body = await endpoint.execute(body as O2EndpointInput);
+            } finally {
+              endpointLatency = Date.now() - startTime;
+            }
+
+            await next();
+
+            if (isFinished(ctx.res)) throw new O2ClientError("socket closed");
+          })
+          .on("error", errorHandler)
+          .callback()
+      )
+      .on("clientError", (err: Error & { code?: string }, socket: O2Socket) => {
+        const status = err.code === "HPE_HEADER_OVERFLOW" ? 431 : 400;
+        socket.clientError = { err, status };
+
+        // Logic from Node source since it does not execute if there is a listener
+        // https://github.com/nodejs/node/blob/master/lib/_http_server.js#L611
+        if (socket.writable) {
+          socket.write(
+            `HTTP/1.1 ${status} ${STATUS_CODES[status]}\r\nConnection: close\r\n\r\n`
+          );
+        }
+        socket.destroy(err);
+      })
+      .once("error", onError)
+      .on("listening", () => {
+        server.off("error", onError);
+        console.log("dev server started", {
+          url: `http://localhost:${port}`,
+        });
+        resolve(server);
+      })
+      .listen(port);
   });
