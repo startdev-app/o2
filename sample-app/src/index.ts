@@ -3,7 +3,7 @@ import { O2Api, O2Endpoint } from "@oxy2/backend";
 export const sampleApp = new O2Api({
   capitalize: new O2Endpoint({
     /** Capitalizes a string. */
-    async implementation(input: {
+    async callback(input: {
       /** String to capitalize. */
       str: string;
     }) {

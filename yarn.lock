@@ -1093,6 +1093,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@oxy2/deploy@workspace:packages/deploy":
+  version: 0.0.0-use.local
+  resolution: "@oxy2/deploy@workspace:packages/deploy"
+  dependencies:
+    "@types/node": 14.14.37
+    tslib: ^2.2.0
+  languageName: unknown
+  linkType: soft
+
 "@oxy2/dev@workspace:packages/dev":
   version: 0.0.0-use.local
   resolution: "@oxy2/dev@workspace:packages/dev"

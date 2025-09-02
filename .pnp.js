@@ -31,6 +31,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:packages/console-logger"
       },
       {
+        "name": "@oxy2/deploy",
+        "reference": "workspace:packages/deploy"
+      },
+      {
         "name": "@oxy2/dev",
         "reference": "workspace:packages/dev"
       },
@@ -60,6 +64,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
     "fallbackExclusionList": [
       ["@oxy2/backend", ["workspace:packages/backend"]],
       ["@oxy2/console-logger", ["virtual:4f9d28a007861b4855f12217b7f20433ceadea463a39ec3f54bbd6641410b030704a88e42594ce3896ed1e57092b04f6976a0a2acd0708911fafaa9a7cabf5c2#workspace:packages/console-logger", "workspace:packages/console-logger"]],
+      ["@oxy2/deploy", ["workspace:packages/deploy"]],
       ["@oxy2/dev", ["workspace:packages/dev"]],
       ["@oxy2/magic", ["workspace:packages/magic"]],
       ["@oxy2/middleware", ["workspace:packages/middleware"]],
@@ -1437,6 +1442,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["chalk", "npm:4.1.1"],
             ["pino", "npm:6.11.3"],
             ["pino-pretty", "npm:4.8.0"],
+            ["tslib", "npm:2.2.0"]
+          ],
+          "linkType": "SOFT",
+        }]
+      ]],
+      ["@oxy2/deploy", [
+        ["workspace:packages/deploy", {
+          "packageLocation": "./packages/deploy/",
+          "packageDependencies": [
+            ["@oxy2/deploy", "workspace:packages/deploy"],
+            ["@types/node", "npm:14.14.37"],
             ["tslib", "npm:2.2.0"]
           ],
           "linkType": "SOFT",

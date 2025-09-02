@@ -9,7 +9,7 @@ export interface O2EndpointOpts<
   Input extends O2EndpointInput,
   Output extends O2EndpointOutput
 > {
-  implementation(input: Input): Promise<Output>;
+  callback(input: Input): Promise<Output>;
 
   /** _Service level objectives_ for the endpoint.
    *
@@ -49,6 +49,6 @@ export class O2Endpoint<
   constructor(public opts: O2EndpointOpts<Input, Output>) {}
 
   execute(input: Input): Promise<Output> {
-    return this.opts.implementation(input);
+    return this.opts.callback(input);
   }
 }
